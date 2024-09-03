@@ -55,6 +55,7 @@ const verifyToken = async (
         where: { token, type, userId, blacklisted: false }
     })
 
+    console.log("Token data from DB:", tokenData);
     if(!tokenData){
         throw new Error('Token not found');
     }

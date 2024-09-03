@@ -12,14 +12,17 @@ import { errorConverter, errorHandler } from './middleware/error';
 import routes from './routes/api';
 import morgan from './config/morgan';
 import config from './config/config';
+import path from 'path';
 
 const app = express();
 
 if (config.env !== "test") {
     app.use(morgan.successHandler);
     app.use(morgan.errorHandler);
-  }
+}
   
+
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 app.use(helmet());
 
@@ -34,6 +37,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(passport.initialize());
+
 
 app.use("/api", routes);
 

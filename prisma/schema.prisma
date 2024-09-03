@@ -23,7 +23,6 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   Token     Token[]
-  Images    Image[]
 }
 
 model Token {
@@ -41,8 +40,6 @@ model Image {
   id    Int  @id @default(autoincrement())
   fileName   String
   filePath   String
-  uploadBy   User     @relation(fields: [userId], references: [id])
-  userId    Int
   createdAt DateTime @default(now())
 }
 
